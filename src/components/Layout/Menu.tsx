@@ -39,7 +39,7 @@ const Menu: React.FC<{selectedChain?: number}> = ({ selectedChain }) => {
     <>
       <AppInfo>
         <picture>
-          <img width={"130px"} src={'/images/common/debond-logo.svg'} alt={'Logo'} />
+          <img width={"130px"} src={'/images/common/muon-logo.svg'} alt={'Logo'} />
         </picture>
         <div className={'hidden sm:block'}>
           {/* <MuonTools mode={getAppMode()} /> */}
