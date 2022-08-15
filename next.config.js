@@ -3,7 +3,7 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-  reactStrictMode: true,
+  reactStrictMode: false, // useEffect runs twice  in this mode 
   swcMinify: true,
 }
 

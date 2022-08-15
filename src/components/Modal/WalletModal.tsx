@@ -22,9 +22,13 @@ const WalletModal: React.FC<React.PropsWithChildren<WalletModalType>> = (props) 
             className={'btn-primary-inverted rounded-xl mb-2 py-3 cursor-pointer'}
             key={name}
             onClick={() => {
-              activate(connectorsByName[name])
-              sessionStorage.setItem('walletConnect', 'true')
-              localStorage.setItem('walletType', name)
+              activate(connectorsByName[name], undefined, true).then(() => {
+                localStorage.setItem('walletIsConnected', 'true')
+                localStorage.setItem('walletType', name)
+              }).catch(() => {
+                localStorage.removeItem('walletIsConnected')
+                localStorage.removeItem('walletType')
+              })
               hide()
             }}
           >

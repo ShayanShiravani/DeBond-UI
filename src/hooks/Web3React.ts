@@ -1,6 +1,12 @@
 import { useWeb3React } from "@web3-react/core"
-import { connectorsByName, injected } from "configs/constants/connectors"
+import { ConnectorNames, connectorsByName, injected } from "configs/constants/connectors"
 import { useEffect, useState } from "react"
+import {
+  UserRejectedRequestError as UserRejectedRequestErrorInjected,
+} from '@web3-react/injected-connector'
+import {
+  UserRejectedRequestError as UserRejectedRequestErrorWalletConnect
+} from '@web3-react/walletconnect-connector'
 
 export const useEagerConnect = (): boolean => {
   const { activate, active } = useWeb3React()
@@ -8,20 +14,30 @@ export const useEagerConnect = (): boolean => {
   const [tried, setTried] = useState(false)
 
   useEffect(() => {
+    setTried(true)
     const walletType = localStorage.getItem('walletType')
-    const walletConnect = sessionStorage.getItem('walletConnect')
-    if (walletConnect && walletType) {
-      activate(connectorsByName[walletType])
-    }
-    injected.isAuthorized().then((isAuthorized) => {
-      if (isAuthorized) {
-        activate(injected, undefined, true).catch(() => {
-          setTried(true)
+    const walletIsConnected = localStorage.getItem('walletIsConnected')
+    if (walletIsConnected && walletType) {
+      if(walletType === ConnectorNames.Injected)
+      {
+        injected.isAuthorized().then((isAuthorized) => {
+          if (isAuthorized) {
+            activate(injected)
+          }
         })
       } else {
-        setTried(true)
+        activate(connectorsByName[walletType], undefined, true).catch((error) => {
+          if(
+            error instanceof UserRejectedRequestErrorInjected ||
+            error instanceof UserRejectedRequestErrorWalletConnect
+          ) {
+            localStorage.removeItem("walletType")
+            localStorage.removeItem("walletIsConnected")
+          } else {
+          }
+        })
       }
-    })
+    }
   }, []) //eslint-disable-line
   // intentionally only running on mount (make sure it's only mounted once :))
 

@@ -28,7 +28,7 @@ const Web3ReactManager: React.FC<React.PropsWithChildren> = (props) => {
 
   // if the account context isn't active, and there's an error on the network context, it's an irrecoverable error
   if (!active && error) {
-    return <>unknownError</>
+    console.log(error)
   }
 
   return (

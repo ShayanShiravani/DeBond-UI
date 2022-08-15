@@ -3,8 +3,8 @@ import auction  from './auction/reduser'
 
 export const store = configureStore({
   reducer: {
-    auction: auction
-  },
+    auction
+  }
 })
 
 export type RootState = ReturnType<typeof store.getState>
