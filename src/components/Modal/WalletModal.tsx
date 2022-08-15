@@ -3,6 +3,7 @@ import { Flex } from 'rebass'
 import { useWeb3React } from '@web3-react/core'
 import Modal from './Index'
 import { connectorsByName } from '../../configs/constants/connectors'
+import Web3 from 'web3'
 
 export interface WalletModalType {
   open: boolean,
@@ -22,10 +23,9 @@ const WalletModal: React.FC<React.PropsWithChildren<WalletModalType>> = (props) 
             className={'btn-primary-inverted rounded-xl mb-2 py-3 cursor-pointer'}
             key={name}
             onClick={() => {
-              activate(connectorsByName[name], undefined, true).then(() => {
-                localStorage.setItem('walletIsConnected', 'true')
-                localStorage.setItem('walletType', name)
-              }).catch(() => {
+              localStorage.setItem('walletIsConnected', 'true')
+              localStorage.setItem('walletType', name)
+              activate(connectorsByName[name], undefined, true).catch(() => {
                 localStorage.removeItem('walletIsConnected')
                 localStorage.removeItem('walletType')
               })
