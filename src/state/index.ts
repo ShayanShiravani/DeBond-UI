@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-// ...
+import auction  from './auction/reduser'
 
 export const store = configureStore({
   reducer: {
+    auction: auction
   },
 })
 
