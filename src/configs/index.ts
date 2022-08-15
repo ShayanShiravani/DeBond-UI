@@ -32,7 +32,7 @@ export const getRpcUrls = (): {[chainId: number]: string} => {
   let validChains = getValidChains()
   return flow([
     Object.entries,
-    (arr: [number, string][]) => arr.filter(([key]) => validChains.includes(key)),
+    (arr: [string, string][]) => arr.filter(([key]) => validChains.includes(+key)),
     Object.fromEntries,
   ])(RPC_URLS)
 }

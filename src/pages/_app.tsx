@@ -8,6 +8,7 @@ import { MainLayout } from 'components/Layout/MainLayout'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import '@fontsource/montserrat'
+import Web3ReactManager from 'components/Web3ReactManager/Index'
 
 function MyApp(props: AppProps) {
   config.autoAddCss = false
@@ -22,9 +23,11 @@ function MyApp(props: AppProps) {
 function App({ Component, pageProps }: AppProps) {
   
   return (
-    <MainLayout>
-      <Component {...pageProps} />
-    </MainLayout>
+    <Web3ReactManager>
+      <MainLayout>
+        <Component {...pageProps} />
+      </MainLayout>
+    </Web3ReactManager>
   )
 }
 

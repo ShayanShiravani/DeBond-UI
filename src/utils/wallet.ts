@@ -2,7 +2,7 @@ import { networkConfigs } from "configs/constants/networks"
 
 export const shortenAddress = (address: string): string | null => {
   return address
-    ? address.substring(0, 1) + '...' + address.substring(address.length - 4, address.length)
+    ? address.substring(0, 2) + '...' + address.substring(address.length - 4, address.length)
     : null
 }
 
