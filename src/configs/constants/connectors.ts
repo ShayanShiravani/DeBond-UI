@@ -6,7 +6,6 @@ import { FortmaticConnector } from '@web3-react/fortmatic-connector'
 import { chainsMap } from '.'
 import { getFormaticKey, getRpcUrls } from 'configs'
 
-const POLLING_INTERVAL = 12000
 const RPC_URLS = getRpcUrls()
 const supportedChainIds = Object.keys(RPC_URLS).map(Number)
 
