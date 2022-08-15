@@ -8,6 +8,13 @@ interface ValidChainsType {
 const validChains: ValidChainsType = {
   local: [
     chainsMap.RINKEBY, chainsMap.BSC_TESTNET, chainsMap.MATIC_TESTNET
+  ],
+  dev: [
+    chainsMap.RINKEBY, chainsMap.BSC_TESTNET, chainsMap.MATIC_TESTNET
+  ],
+  production: [
+    chainsMap.ETH, chainsMap.BSC, chainsMap.MATIC, chainsMap.FANTOM,
+    chainsMap.AVAX, chainsMap.ARBITRUM, chainsMap.OPTIMISM
   ]
 }
 
@@ -29,7 +36,7 @@ export const getAnkrKey = (): string => {
 }
 
 export const getRpcUrls = (): {[chainId: number]: string} => {
-  let validChains = getValidChains()
+  let validChains = Object.values(chainsMap)
   return flow([
     Object.entries,
     (arr: [string, string][]) => arr.filter(([key]) => validChains.includes(+key)),
