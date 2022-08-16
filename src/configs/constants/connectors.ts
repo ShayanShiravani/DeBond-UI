@@ -8,7 +8,6 @@ import { getFormaticKey, getRpcUrls, getValidChains } from 'configs'
 
 const supportedChainIds = getValidChains()
 const RPC_URLS = getRpcUrls()
-console.log({supportedChainIds, RPC_URLS})
 
 export const injected = new InjectedConnector(
   { supportedChainIds: Object.values(chainsMap)}
