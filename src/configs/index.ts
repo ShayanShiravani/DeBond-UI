@@ -36,7 +36,7 @@ export const getAnkrKey = (): string => {
 }
 
 export const getRpcUrls = (): {[chainId: number]: string} => {
-  let validChains = Object.values(chainsMap)
+  let validChains = getValidChains()
   return flow([
     Object.entries,
     (arr: [string, string][]) => arr.filter(([key]) => validChains.includes(+key)),

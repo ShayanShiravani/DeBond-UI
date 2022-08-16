@@ -4,23 +4,25 @@ import { FrameConnector } from '@web3-react/frame-connector'
 import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import { FortmaticConnector } from '@web3-react/fortmatic-connector'
 import { chainsMap } from '.'
-import { getFormaticKey, getRpcUrls } from 'configs'
+import { getFormaticKey, getRpcUrls, getValidChains } from 'configs'
 
+const supportedChainIds = getValidChains()
 const RPC_URLS = getRpcUrls()
-const supportedChainIds = Object.keys(RPC_URLS).map(Number)
+console.log({supportedChainIds, RPC_URLS})
 
 export const injected = new InjectedConnector(
-  { supportedChainIds: supportedChainIds}
+  { supportedChainIds: Object.values(chainsMap)}
 )
 
 export const walletConnect = new WalletConnectConnector({
+  chainId: supportedChainIds[0],
   rpc: RPC_URLS,
   supportedChainIds: supportedChainIds,
   qrcode: true
 })
 
 export const walletLink = new WalletLinkConnector({
-  url: RPC_URLS[chainsMap.ETH],
+  url: RPC_URLS[supportedChainIds[0]],
   appName: 'DeBond',
   supportedChainIds: supportedChainIds
 })
@@ -30,7 +32,7 @@ export const frame = new FrameConnector({ supportedChainIds: [chainsMap.ETH] })
 export const fortmatic = new FortmaticConnector(
   { 
     apiKey:  getFormaticKey(), 
-    chainId: chainsMap.ETH
+    chainId: supportedChainIds[0]
   }
 )
 
