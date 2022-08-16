@@ -5,9 +5,8 @@ import { UnsupportedChainIdError } from '@web3-react/core'
 
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
-// const MuonTools = require('muon-toolbox')
 import { addRPC, shortenAddress } from 'utils/wallet'
-import { getAppMode, getValidChains } from 'configs'
+import { getValidChains } from 'configs'
 import { NameChainMap } from 'configs/constants'
 const WalletModal = dynamic(() => import('../Modal/WalletModal'))
 
@@ -20,7 +19,7 @@ const AppInfo = styled(Flex)`
 `
 
 const Menu: React.FC<{selectedChain?: number}> = ({ selectedChain }) => {
-  const { account, chainId, error } = useWeb3React()
+  const { account, chainId, library, error } = useWeb3React()
 
   const [open, setOpen] = React.useState(false)
 
@@ -41,9 +40,6 @@ const Menu: React.FC<{selectedChain?: number}> = ({ selectedChain }) => {
         <picture>
           <img width={"130px"} src={'/images/common/muon-logo.svg'} alt={'Logo'} />
         </picture>
-        <div className={'hidden sm:block'}>
-          {/* <MuonTools mode={getAppMode()} /> */}
-        </div>
       </AppInfo>
       <AppInfo>
         {account && chainId ? (
