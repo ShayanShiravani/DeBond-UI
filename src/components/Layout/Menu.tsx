@@ -19,7 +19,7 @@ const AppInfo = styled(Flex)`
 `
 
 const Menu: React.FC<{selectedChain?: number}> = ({ selectedChain }) => {
-  const { account, chainId, library, error } = useWeb3React()
+  const { account, chainId, error } = useWeb3React()
 
   const [open, setOpen] = React.useState(false)
 

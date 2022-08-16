@@ -3,7 +3,6 @@ import { Flex } from 'rebass'
 import { useWeb3React } from '@web3-react/core'
 import Modal from './Index'
 import { connectorsByName } from '../../configs/constants/connectors'
-import Web3 from 'web3'
 
 export interface WalletModalType {
   open: boolean,

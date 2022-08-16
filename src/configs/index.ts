@@ -23,7 +23,7 @@ export const getAppMode = (): string | undefined => {
 }
 
 export const getValidChains = (): number[] => {
-  let mode = getAppMode()
+  const mode = getAppMode()
   return mode?validChains[mode]:[]
 }
 
@@ -36,7 +36,7 @@ export const getAnkrKey = (): string => {
 }
 
 export const getRpcUrls = (): {[chainId: number]: string} => {
-  let validChains = getValidChains()
+  const validChains = getValidChains()
   return flow([
     Object.entries,
     (arr: [string, string][]) => arr.filter(([key]) => validChains.includes(+key)),
