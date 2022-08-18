@@ -1,3 +1,7 @@
-export interface AuctionState {
-  endDate: string
+export interface OrderingState {
+  chain: number
+}
+
+export interface ClaimingState {
+  chain: number
 }

@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import auction  from './auction/reduser'
+import ordering  from './ordering/reduser'
+import claiming from './claiming/reducer'
 
 export const store = configureStore({
   reducer: {
-    auction
+    ordering,
+    claiming
   }
 })
 
