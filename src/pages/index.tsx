@@ -3,7 +3,9 @@ import Home from '../views/Home'
 
 const HomePage: NextPage = () => {
   return (
-    <Home />
+    <>
+      <Home />
+    </>
   )
 }
 
