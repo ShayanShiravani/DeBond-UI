@@ -2,10 +2,7 @@
 /* eslint-disable */
 // eslint-disable
 module.exports = {
-  content: [
-    './src/pages/**/*.{js,jsx,ts,tsx}',
-    './src/components/**/*.{js,ts,jsx,tsx}'
-  ],
+  content: ['./src/**/*.{ts,tsx}'],
   theme: {
     // colors: {
     //   black: '#323245',
@@ -15,6 +12,7 @@ module.exports = {
       width: {
         100: '25rem',
         104: '26rem',
+        150: '37rem'
       },
       colors: {
         primary: '#5158F6',
@@ -28,6 +26,7 @@ module.exports = {
         'secondary-light-2': '#F6C7B4',
         'disabled-bg': '#C0C0C0',
         'disabled-text': '#939393',
+        card: '#fff'
       },
       backgroundImage: {
         'token-left': "url('/img/tokenLeft-background.svg')",
@@ -35,7 +34,7 @@ module.exports = {
         'presale-header': "url('/img/presale-header.svg')",
         'public-sale-header': "url('/img/public-header.svg')",
         blob: "url('/img/blob-bg.svg')",
-        blur: "url('/img/blur-bg.svg')",
+        blur: "url('/images/common/blur-bg.svg')",
       },
       dropShadow: {
         'primary-xl': '0px 8px 18px rgba(81, 88, 246, 0.15)',
