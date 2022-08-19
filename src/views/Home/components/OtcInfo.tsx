@@ -1,3 +1,4 @@
+import React from "react"
 import { Flex } from "rebass"
 import InfoBox from "./InfoBox"
 import SectionHeader from "./SectionTitle"

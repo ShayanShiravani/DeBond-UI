@@ -1,6 +1,6 @@
-import Modal from 'components/Modal/Index'
-import { getValidChains } from 'configs'
-import { ChainParamType, ChainsParams } from 'configs/constants'
+import Modal from '../../../components/Modal/Index'
+import { getValidChains } from '../../../configs/constants/chains'
+import { ChainParamType, ChainsParams } from '../../../configs/constants/chains'
 import React, { useState } from 'react'
 import SelectBox from './SelectBox'
 

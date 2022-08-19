@@ -1,3 +1,5 @@
+import React from "react";
+import Card from "../../components/Card";
 import Head from "next/head";
 import BondInfo from "./components/BondInfo";
 import Bonding from "./components/Bonding";
@@ -17,20 +19,20 @@ const Home: React.FC = () => {
         <div className={'py-10 lg:py-20 px-4 sm:px-20 relative z-10'}>
           <section className={'flex flex-col xl:flex-row items-center xl:items-start justify-evenly mb-24 lg:mb-36'}>
             <section className="lg:w-3/5 w-full px-2 mb-2">
-              <div className={'card bg-card w-full px-4 mb-2'}>
+              <Card>
                 <OtcInfo />
-              </div>
-              <div className={'card bg-card w-full px-4 mb-2'}>
+              </Card>
+              <Card>
                 <BondInfo />
-              </div>
+              </Card>
             </section>
             <section className={'lg:w-2/5 w-full px-2 order-first lg:order-last mb-2'}>
-                <div className={'card bg-card w-full px-4 mb-2'}>
-                  <Bonding />
-                </div>
-                <div className={'card bg-card w-full px-4 mb-2'}>
-                  <OrderList />
-                </div>
+              <Card>
+                <Bonding />
+              </Card>
+              <Card>
+                <OrderList />
+              </Card>
             </section>
           </section>
         </div>

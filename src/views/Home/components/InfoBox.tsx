@@ -1,6 +1,7 @@
+import React from "react"
 import { faCircleInfo } from "@fortawesome/pro-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Tooltip } from "components/Tooltip"
+import { Tooltip } from "../../../components/Tooltip"
 import { PropsWithChildren } from "react"
 // import { Tooltip } from "@material-tailwind/react";
 
