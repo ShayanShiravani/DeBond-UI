@@ -1,5 +1,5 @@
 import { useWeb3React } from "@web3-react/core"
-import { ConnectorNames, connectorsByName, injected } from "configs/constants/connectors"
+import { ConnectorNames, connectorsByName, injected } from "../configs/constants/connectors"
 import { useEffect, useState } from "react"
 import {
   UserRejectedRequestError as UserRejectedRequestErrorInjected,
