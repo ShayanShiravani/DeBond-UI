@@ -6,6 +6,7 @@ import { store } from 'state'
 import { MainLayout } from 'components/Layout/MainLayout'
 import Web3ReactManager from 'components/Web3ReactManager/Index'
 
+import React from 'react'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import '@fontsource/montserrat'
