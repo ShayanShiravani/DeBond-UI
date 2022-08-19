@@ -1,4 +1,4 @@
-import { networkConfigs } from "configs/constants/networks"
+import { networkConfigs } from "../configs/constants/MetaMaskNetworks"
 
 export const shortenAddress = (address: string): string | null => {
   return address
