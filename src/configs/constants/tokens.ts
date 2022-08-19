@@ -1,4 +1,4 @@
-import { chainsMap } from ".";
+import { chainsMap } from "./chains";
 
 export interface PurchaseTokenType {
   symbol: string,
@@ -8,7 +8,7 @@ export interface PurchaseTokenType {
   keyName: string // Used to interaction with Muon app
 }
 
-export const PURCHASE_TOKENS: {[chainId: number]: PurchaseTokenType} = {
+export const PURCHASE_TOKEN: {[chainId: number]: PurchaseTokenType} = {
   [chainsMap.ETH]: {
     symbol: 'USDC',
     address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
@@ -83,5 +83,8 @@ export const PURCHASE_TOKENS: {[chainId: number]: PurchaseTokenType} = {
 
 export const BOND_TOKEN = {
   symbol: 'bMUON',
-  iconPath: './images/tokens/muon.svg'
+  iconPath: './images/tokens/muon.svg',
+  address: {
+    [chainsMap.RINKEBY]: "0xCbFE026CFb9296Df5b13b95d56Fc620166B23CbC"
+  }
 }

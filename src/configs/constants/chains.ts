@@ -1,3 +1,4 @@
+import { getAppMode } from ".."
 
 export const chainsMap: {[name:string]:number} = {
   ETH: 1,
@@ -35,26 +36,6 @@ export const NameChainMap: {[id: number]:string} = {
   [chainsMap.AVAX]: 'AVAX',
   [chainsMap.ARBITRUM]: 'ARBITRUM',
   [chainsMap.OPTIMISM]: 'OPTIMISM'
-}
-
-// The RPC urls used for connectors
-export const RPC_URLS: { [chainId: number]: string } = {
-  [chainsMap.ETH]: 'https://rpc.ankr.com/eth',
-  [chainsMap.ROPSTEN]: 'https://rpc.ankr.com/eth_ropsten',
-  [chainsMap.RINKEBY]: 'https://rpc.ankr.com/eth_rinkeby',
-  [chainsMap.BSC]: 'https://rpc.ankr.com/bsc',
-  [chainsMap.BSC_TESTNET]: 'https://rpc.ankr.com/bsc_testnet_chapel',
-  [chainsMap.XDAI]: 'https://rpc.xdaichain.com',
-  [chainsMap.SOKOL]: 'https://sokol.poa.network/',
-  [chainsMap.FANTOM_TESTNET]: 'https://rpc.ankr.com/fantom_testnet',
-  [chainsMap.HECO]: 'https://http-mainnet-node.huobichain.com',
-  [chainsMap.HECO_TESTNET]: 'https://http-testnet.hecochain.com',
-  [chainsMap.FANTOM]: 'https://rpc.ankr.com/fantom',
-  [chainsMap.MATIC]: 'https://rpc.ankr.com/polygon',
-  [chainsMap.MATIC_TESTNET]: 'https://rpc.ankr.com/polygon_mumbai',
-  [chainsMap.AVAX]: 'https://rpc.ankr.com/avalanche',
-  [chainsMap.ARBITRUM]: 'https://rpc.ankr.com/arbitrum',
-  [chainsMap.OPTIMISM]: 'https://rpc.ankr.com/optimism'
 }
 
 export interface ChainParamType {
@@ -196,4 +177,26 @@ export const ChainsParams: { [chainId: number]: ChainParamType } = {
     iconPath: './images/chains/op.svg',
     keyName: 'op'
   }
+}
+
+interface ValidChainsType {
+  [mode: string]: number[]
+}
+
+const validChains: ValidChainsType = {
+  local: [
+    chainsMap.RINKEBY, chainsMap.BSC_TESTNET, chainsMap.MATIC_TESTNET
+  ],
+  dev: [
+    chainsMap.RINKEBY, chainsMap.BSC_TESTNET, chainsMap.MATIC_TESTNET
+  ],
+  production: [
+    chainsMap.ETH, chainsMap.BSC, chainsMap.MATIC, chainsMap.FANTOM,
+    chainsMap.AVAX, chainsMap.ARBITRUM, chainsMap.OPTIMISM
+  ]
+}
+
+export const getValidChains = (): number[] => {
+  const mode = getAppMode()
+  return mode?validChains[mode]:[]
 }

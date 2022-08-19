@@ -3,11 +3,13 @@ import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { FrameConnector } from '@web3-react/frame-connector'
 import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import { FortmaticConnector } from '@web3-react/fortmatic-connector'
-import { chainsMap } from '.'
-import { getFormaticKey, getRpcUrls, getValidChains } from 'configs'
+import { chainsMap } from './chains'
+import { getFormaticKey } from '..'
+import { getValidChains } from './chains'
+import { getConnectorRpcUrls } from './rpc'
 
 const supportedChainIds = getValidChains()
-const RPC_URLS = getRpcUrls()
+const RPC_URLS = getConnectorRpcUrls()
 
 export const injected = new InjectedConnector(
   { supportedChainIds: Object.values(chainsMap)}

@@ -1,4 +1,4 @@
-import { chainsMap, ChainsParams } from ".";
+import { chainsMap, ChainsParams } from "./chains";
 
 type NetworkConfigType = {
   chainId: string,
