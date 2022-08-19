@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { getValidChains } from "configs";
+import { getValidChains } from "../../configs/constants/chains";
 import { ClaimingState } from "state/types";
 import { setChain } from "./actions";
 

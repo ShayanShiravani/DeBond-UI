@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import ordering  from './ordering/reduser'
 import claiming from './claiming/reducer'
+import wallet from './wallet/reducer'
 
 export const store = configureStore({
   reducer: {
     ordering,
-    claiming
+    claiming,
+    wallet
   }
 })
 
