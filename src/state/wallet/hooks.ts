@@ -1,5 +1,5 @@
 import { useCallback } from "react"
-import { useAppDispatch, useAppSelector } from "state/hooks"
+import { useAppDispatch, useAppSelector } from "../hooks"
 import { setDestBalance, setOriginBalance } from "./actions"
 
 export const useWalletState = () => {
