@@ -5,7 +5,7 @@ import { UnsupportedChainIdError } from '@web3-react/core'
 
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
-import { addRPC, shortenAddress } from 'utils/wallet'
+import { addRPC, shortenAddress } from '../../utils/wallet'
 import { getValidChains } from '../../configs/constants/chains'
 import { NameChainMap } from '../../configs/constants/chains'
 const WalletModal = dynamic(() => import('../Modal/WalletModal'))

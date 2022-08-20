@@ -1,6 +1,6 @@
 import React from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { useEagerConnect, useInactiveListener } from 'hooks/Web3React'
+import { useEagerConnect, useInactiveListener } from '../../hooks/Web3React'
 
 
 const Web3ReactManager: React.FC<React.PropsWithChildren> = (props) => {
