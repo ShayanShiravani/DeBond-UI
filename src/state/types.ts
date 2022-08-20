@@ -1,7 +1,8 @@
-import { PurchaseTokenType } from "configs/constants/tokens"
+import { PurchaseTokenType } from "../configs/constants/tokens"
 
 export interface BondTokenType {
   symbol: string,
+  decimal: number,
   iconPath: string,
   address: string
 }

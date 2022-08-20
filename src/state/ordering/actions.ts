@@ -1,6 +1,6 @@
 import { createAction } from "@reduxjs/toolkit";
-import { PurchaseTokenType } from "configs/constants/tokens";
-import { BondTokenType } from "state/types";
+import { PurchaseTokenType } from "../../configs/constants/tokens";
+import { BondTokenType } from "../types";
 
 export const setChain = createAction< number >('ordering/setChain')
 

@@ -1,7 +1,7 @@
-import { PurchaseTokenType } from "configs/constants/tokens"
+import { PurchaseTokenType } from "../../configs/constants/tokens"
 import { useCallback } from "react"
-import { useAppDispatch, useAppSelector } from "state/hooks"
-import { BondTokenType } from "state/types"
+import { useAppDispatch, useAppSelector } from "../hooks"
+import { BondTokenType } from "../types"
 import { setBondToken, setChain, setPurchaseToken } from "./actions"
 
 export const useOrderingState = () => {
