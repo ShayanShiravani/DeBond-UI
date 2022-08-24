@@ -1,9 +1,11 @@
 import React from "react"
 import { Flex } from "rebass"
+import { useOrderingState } from "../../../state/ordering/hooks"
 import InfoBox from "./InfoBox"
 import SectionHeader from "./SectionTitle"
 
 const OtcInfo: React.FC = () => {
+  const { bondToken } = useOrderingState()
   return (
     <Flex flexDirection="column" justifyContent="center" alignItems="center" width="100%">
       <div className={'w-full'}>
@@ -40,7 +42,7 @@ const OtcInfo: React.FC = () => {
           caption="Bond price"
           tooltipText="The price that must be paid to purchase a bond."
         >
-          0.8 USDC
+          {`${bondToken.unitPrice} USDC`}
         </InfoBox>
         <InfoBox
           caption="Bond YTM"
