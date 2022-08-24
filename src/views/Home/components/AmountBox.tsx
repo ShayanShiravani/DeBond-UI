@@ -4,6 +4,7 @@ import { Type } from '../../../components/Text'
 import React from 'react'
 import { Flex } from 'rebass'
 import Token from './Token'
+import { BN } from '../../../utils/BigNumber'
 
 interface AmountBoxType {
   label: string,
@@ -14,12 +15,23 @@ interface AmountBoxType {
     iconPath: string
   },
   hasMaxBtn?: boolean,
-  balance: string
+  balance: string,
+  handleAmount?: any,
+  disabled?: boolean,
 }
 
 const AmountBox: React.FC<AmountBoxType> = (props) => {
-  const { label, amount, hasMaxBtn, margin, token, balance } = props
+  const { label, amount, hasMaxBtn, margin, token, balance, handleAmount, disabled } = props
   const { account } = useWeb3React()
+  const fixedBalance = BN(balance).toString()
+
+  const handleMaxClick = (): void => {
+    if(handleAmount) handleAmount(fixedBalance)
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    if(handleAmount) handleAmount(e.currentTarget.value)
+  }
 
   return (
     <>
@@ -30,7 +42,7 @@ const AmountBox: React.FC<AmountBoxType> = (props) => {
           <Flex justifyContent="flex-end" alignItems="center">
             {account && 
             <Type.SM color="#313144">
-              Balance: {balance + ' ' + token.symbol}
+              Balance: {fixedBalance + ' ' + token.symbol}
               <span className={'inline-block pl-1 font-medium'}>
               </span>
             </Type.SM>
@@ -39,6 +51,9 @@ const AmountBox: React.FC<AmountBoxType> = (props) => {
               <Max
                 cursor={'pointer'}
                 className={'btn-primary-inverted px-1 py-px rounded font-medium text-[11px]'}
+                onClick={
+                  handleMaxClick
+                }
               >
                 Max
               </Max>
@@ -54,7 +69,8 @@ const AmountBox: React.FC<AmountBoxType> = (props) => {
             value={amount}
             placeholder="Enter Amount"
             min={`0`}
-            disabled={false}
+            disabled={disabled}
+            onChange={handleInputChange}
           />
           <Token 
             logo={token.iconPath} 

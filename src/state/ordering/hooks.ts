@@ -2,7 +2,7 @@ import { PurchaseTokenType } from "../../configs/constants/tokens"
 import { useCallback } from "react"
 import { useAppDispatch, useAppSelector } from "../hooks"
 import { BondTokenType } from "../types"
-import { setBondToken, setChain, setPurchaseToken } from "./actions"
+import { setAmountFrom, setAmountTo, setBondToken, setChain, setPurchaseToken } from "./actions"
 
 export const useOrderingState = () => {
   return useAppSelector((state) => state.ordering)
@@ -26,5 +26,19 @@ export const useSetBondToken = () => {
   const dispatch = useAppDispatch()
   return useCallback((token: BondTokenType) => {
     dispatch(setBondToken(token))
+  }, [dispatch])
+}
+
+export const useSetAmountFrom = () => {
+  const dispatch = useAppDispatch()
+  return useCallback((amount: string) => {
+    dispatch(setAmountFrom(amount))
+  }, [dispatch])
+}
+
+export const useSetAmountTo = () => {
+  const dispatch = useAppDispatch()
+  return useCallback((amount: string) => {
+    dispatch(setAmountTo(amount))
   }, [dispatch])
 }

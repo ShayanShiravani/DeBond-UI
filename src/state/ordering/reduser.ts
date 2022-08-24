@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { getValidChains } from "../../configs/constants/chains";
 import { OrderingState } from "../types";
-import { setBondToken, setChain, setPurchaseToken } from "./actions";
+import { setAmountFrom, setAmountTo, setBondToken, setChain, setPurchaseToken } from "./actions";
 import { BOND_TOKEN, PURCHASE_TOKEN } from "../../configs/constants/tokens";
 
 const validChains = getValidChains()
@@ -11,11 +11,11 @@ const initialState: OrderingState = {
   chain: defaultChain,
   purchaseToken: PURCHASE_TOKEN[defaultChain],
   bondToken: {
-    symbol: BOND_TOKEN.symbol,
-    decimal: BOND_TOKEN.decimal,
-    iconPath: BOND_TOKEN.iconPath,
+    ...BOND_TOKEN,
     address: BOND_TOKEN.address[defaultChain]
-  }
+  },
+  amountFrom: "",
+  amountTo: ""
 }
 
 export default createReducer(initialState, (builder) =>
@@ -44,6 +44,24 @@ export default createReducer(initialState, (builder) =>
         return {
           ...state,
           bondToken: payload
+        }
+      }
+    )
+    .addCase(
+      setAmountFrom,
+      (state, { payload }) => {
+        return {
+          ...state,
+          amountFrom: payload
+        }
+      }
+    )
+    .addCase(
+      setAmountTo,
+      (state, { payload }) => {
+        return {
+          ...state,
+          amountTo: payload
         }
       }
     )

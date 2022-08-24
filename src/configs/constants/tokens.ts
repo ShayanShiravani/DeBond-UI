@@ -84,6 +84,7 @@ export const PURCHASE_TOKEN: {[chainId: number]: PurchaseTokenType} = {
 export const BOND_TOKEN = {
   symbol: 'bMUON',
   decimal: 6,
+  unitPrice: "0.8", // USD price
   iconPath: './images/tokens/muon.svg',
   address: {
     [chainsMap.RINKEBY]: "0xCbFE026CFb9296Df5b13b95d56Fc620166B23CbC"

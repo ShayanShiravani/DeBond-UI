@@ -61,9 +61,7 @@ export const useSetTokens = (): {
   useEffect(() => {
     setPurchaseToken(PURCHASE_TOKEN[chain])
     setBondToken({
-      symbol: BOND_TOKEN.symbol,
-      decimal: BOND_TOKEN.decimal,
-      iconPath: BOND_TOKEN.iconPath,
+      ...BOND_TOKEN,
       address: BOND_TOKEN.address[chain]
     })
   }, [chain]) //eslint-disable-line react-hooks/exhaustive-deps
