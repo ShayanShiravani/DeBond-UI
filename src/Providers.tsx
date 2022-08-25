@@ -1,6 +1,6 @@
 import { Store } from '@reduxjs/toolkit'
 import { Web3ReactProvider } from '@web3-react/core'
-import { getLibrary } from 'utils/web3React'
+import { getLibrary } from './utils/web3React'
 import { Provider } from 'react-redux'
 import React from 'react'
 
