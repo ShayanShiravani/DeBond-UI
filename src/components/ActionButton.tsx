@@ -1,11 +1,17 @@
 import React, { PropsWithChildren } from 'react'
 
-const ActionButton: React.FC<PropsWithChildren> = (props) => {
-  const { children } = props
+interface ActionButtonType {
+  style: string,
+  onClick?: any
+}
+
+const ActionButton: React.FC<PropsWithChildren<ActionButtonType>> = (props) => {
+  const { children, style, onClick } = props
 
   return (
     <button
-      className='btn-primary h-14 text-lg font-medium'
+      className={`${style} h-14 text-lg font-medium`}
+      onClick={onClick}
     >
       {children}
     </button>
