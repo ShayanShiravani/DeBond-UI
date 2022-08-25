@@ -1,9 +1,11 @@
 import React from "react"
 import { Flex } from "rebass"
+import { useOrderingState } from "../../../state/ordering/hooks"
 import InfoBox from "./InfoBox"
 import SectionHeader from "./SectionTitle"
 
 const BondInfo: React.FC<React.PropsWithChildren> = () => {
+  const { purchaseToken } = useOrderingState()
   return (
     <>
       <Flex flexDirection="column" justifyContent="center" alignItems="center" width="100%">
@@ -17,7 +19,7 @@ const BondInfo: React.FC<React.PropsWithChildren> = () => {
             caption="Face value"
             tooltipText="Amount each bond is redeemable for at maturity."
           >
-            1 USDC
+            {`1 ${purchaseToken.symbol}`}
           </InfoBox>
           <InfoBox
             caption="Collateral tokens"
