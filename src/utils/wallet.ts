@@ -1,3 +1,4 @@
+import Web3 from "web3"
 import { networkConfigs } from "../configs/constants/MetaMaskNetworks"
 
 export const shortenAddress = (address: string): string | null => {
@@ -6,10 +7,10 @@ export const shortenAddress = (address: string): string | null => {
     : null
 }
 
-export const addRPC = async (chainId: number, provider?: any): Promise<void> => {
-  const web3 = provider?.currentProvider ?? window.ethereum
-  if (!chainId || !web3 || !networkConfigs[chainId]) return
-  web3
+export const addRPC = async (chainId: number, library?: Web3): Promise<void> => {
+  const provider = library?.givenProvider
+  if (!chainId || !provider || !networkConfigs[chainId]) return
+  provider
     .request({
       method: 'wallet_switchEthereumChain',
       params: [{ chainId: networkConfigs[chainId].chainId }],
@@ -19,7 +20,7 @@ export const addRPC = async (chainId: number, provider?: any): Promise<void> => 
     })
     .catch((switchError: any) => {
       if (switchError.code === 4902) {
-        web3
+        provider
           .request({
             method: 'wallet_addEthereumChain',
             params: [networkConfigs[chainId]],
