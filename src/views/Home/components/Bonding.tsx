@@ -28,6 +28,10 @@ const Bonding: React.FC = () => {
         setBtnText(`Switch to ${NameChainMap[selectedChain]}`)
         setBtnStyle("btn-secondary-inverted")
         break
+      case ACTION_BUTTON_STATUS.DEPOSIT:
+        setBtnText("Deposit")
+        setBtnStyle("btn-primary")
+        break
       default:
         setBtnText("Approve")
         setBtnStyle("btn-primary")
@@ -42,6 +46,9 @@ const Bonding: React.FC = () => {
         break;
       case ACTION_BUTTON_STATUS.WRONG_NETWORK:
         addRPC(selectedChain, library)
+        break
+      case ACTION_BUTTON_STATUS.DEPOSIT:
+        //TODO: fixme
         break
       default:
         break;
