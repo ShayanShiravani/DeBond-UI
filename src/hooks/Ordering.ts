@@ -1,11 +1,12 @@
 import { useWeb3React } from "@web3-react/core";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BondTokenType } from "../state/types";
 import { BOND_TOKEN, PurchaseTokenType, PURCHASE_TOKEN } from "../configs/constants/tokens";
 import { useOrderingState, useSetBondToken, useSetPurchaseToken } from "../state/ordering/hooks";
 import { useSetDestBalance, useSetOriginBalance, useWalletState } from "../state/wallet/hooks";
 import getBalances from "../utils/multicall/getBalances";
 import { BN, ConvertToDecimal, ZERO_BN } from "../utils/BigNumber";
+import { getAllowance } from "../utils/token";
 
 interface setBalancesType {
   originBalance: string,
@@ -67,4 +68,22 @@ export const useSetTokens = (): {
   }, [chain]) //eslint-disable-line react-hooks/exhaustive-deps
 
   return { purchaseToken, bondToken }
+}
+
+export const useSetAllowance = (trigger?: boolean): string => {
+  const { library, account } = useWeb3React()
+  const { purchaseToken, bondToken } = useOrderingState()
+  const [ allowance, setAllowance ] = useState("0")
+
+  useEffect(() => {
+    const fetchAllowance = async() => {
+      if(account) {
+        const result = await getAllowance(library, purchaseToken.address, account, bondToken.address)
+        setAllowance(result)
+      }
+    }
+    fetchAllowance()
+  }, [library, purchaseToken, account, bondToken, trigger])
+
+  return allowance
 }

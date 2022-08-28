@@ -90,3 +90,5 @@ export const BOND_TOKEN = {
     [chainsMap.RINKEBY]: "0xCbFE026CFb9296Df5b13b95d56Fc620166B23CbC"
   }
 }
+
+export const APPROVE_AMOUNT = 1000000

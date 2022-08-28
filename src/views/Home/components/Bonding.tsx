@@ -9,14 +9,20 @@ import { ACTION_BUTTON_STATUS } from "../constants"
 import WalletModal from "../../../components/Modal/WalletModal"
 import { addRPC } from "../../../utils/wallet"
 import { useWeb3React } from "@web3-react/core"
+import { approveAllowance } from "../../../utils/token"
+import { BN, ExponentToBigDecimal } from "../../../utils/BigNumber"
+import { APPROVE_AMOUNT } from "../../../configs/constants/tokens"
+import { useSetAllowance } from "../../../hooks/Ordering"
 
 const Bonding: React.FC = () => {
-  const { library } = useWeb3React()
+  const { library, account } = useWeb3React()
   const [ btnText, setBtnText ] = useState("")
   const [ btnStyle, setBtnStyle ] = useState("btn-primary")
   const [ openModal, setOpenModal ] = useState(false)
-  const { chain: selectedChain } = useOrderingState()
-  const btnStatus = useBtnStatus()
+  const [ fetchAllowance, setFetchAllowance ] = useState(false)
+  const { chain: selectedChain, purchaseToken, bondToken } = useOrderingState()
+  const allowance = useSetAllowance(fetchAllowance)
+  const btnStatus = useBtnStatus(allowance)
 
   useEffect(() => {
     switch (btnStatus) {
@@ -49,6 +55,16 @@ const Bonding: React.FC = () => {
         break
       case ACTION_BUTTON_STATUS.DEPOSIT:
         //TODO: fixme
+        break
+      case ACTION_BUTTON_STATUS.APPROVE:
+        const amount = BN(APPROVE_AMOUNT).multipliedBy(
+          ExponentToBigDecimal(purchaseToken.decimal)
+        )
+        if(account) {
+          approveAllowance(library, purchaseToken.address, account, amount.toString(), 
+            bondToken.address)
+            .then(() => setFetchAllowance(!fetchAllowance))
+        }
         break
       default:
         break;
