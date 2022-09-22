@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import ActionButton from "../../../components/ActionButton"
 import { Flex } from "rebass"
 import OrderingForm from "./OrderingForm"
@@ -45,31 +45,37 @@ const Bonding: React.FC = () => {
     }
   }, [btnStatus, selectedChain])
 
-  const btnClickHandler = (): void => {
-    switch (btnStatus) {
-      case ACTION_BUTTON_STATUS.CONNECT:
-        setOpenModal(true)
-        break;
-      case ACTION_BUTTON_STATUS.WRONG_NETWORK:
-        addRPC(selectedChain, library)
-        break
-      case ACTION_BUTTON_STATUS.DEPOSIT:
-        //TODO: fixme
-        break
-      case ACTION_BUTTON_STATUS.APPROVE:
-        const amount = BN(APPROVE_AMOUNT).multipliedBy(
-          ExponentToBigDecimal(purchaseToken.decimal)
-        )
-        if(account) {
-          approveAllowance(library, purchaseToken.address, account, amount.toString(), 
-            bondToken.address)
-            .then(() => setFetchAllowance(!fetchAllowance))
-        }
-        break
-      default:
-        break;
-    }
-  }
+  const btnClickHandler = useCallback(
+    (): void => {
+      switch (btnStatus) {
+        case ACTION_BUTTON_STATUS.CONNECT:
+          setOpenModal(true)
+          break;
+        case ACTION_BUTTON_STATUS.WRONG_NETWORK:
+          addRPC(selectedChain, library)
+          break
+        case ACTION_BUTTON_STATUS.DEPOSIT:
+          //TODO: fixme
+          break
+        case ACTION_BUTTON_STATUS.APPROVE:
+          const amount = BN(APPROVE_AMOUNT).multipliedBy(
+            ExponentToBigDecimal(purchaseToken.decimal)
+          )
+          if(account) {
+            approveAllowance(library, purchaseToken.address, account, amount.toString(), 
+              bondToken.address)
+              .then(() => setFetchAllowance(!fetchAllowance))
+          }
+          break
+        default:
+          break;
+      }
+    },
+    [
+      btnStatus, selectedChain, library, account, purchaseToken, 
+      bondToken, fetchAllowance
+    ]
+  )
 
   
 
