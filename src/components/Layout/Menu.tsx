@@ -8,6 +8,7 @@ import { useWeb3React } from '@web3-react/core'
 import { addRPC, shortenAddress } from '../../utils/wallet'
 import { getValidChains } from '../../configs/constants/chains'
 import { NameChainMap } from '../../configs/constants/chains'
+import WalletDropdown from './WalletDropdown'
 const WalletModal = dynamic(() => import('../Modal/WalletModal'))
 
 const AppInfo = styled(Flex)`
@@ -44,11 +45,9 @@ const Menu: React.FC<{selectedChain?: number}> = ({ selectedChain }) => {
       <AppInfo>
         {account && chainId ? (
           validChains.includes(chainId) ? (
-            <button
-              className={'btn-small btn-primary-inverted mr-3'}
-            >
-              {shortenAddress(account)}
-            </button>
+            <WalletDropdown
+              text={shortenAddress(account)||""}
+            />
           ) : (
             <button
               className="btn-secondary-inverted btn-small hidden sm:block sm:mr-3"
