@@ -3,6 +3,7 @@ import { Menu } from '@headlessui/react'
 import DropDown from "../Dropdown"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons"
+import { useWeb3React } from "@web3-react/core"
 
 interface WalletDropdownType {
   text: string,
@@ -11,6 +12,18 @@ interface WalletDropdownType {
 
 const WalletDropdown: React.FC<WalletDropdownType> = (props) => {
   const { text } = props
+
+  const { deactivate } = useWeb3React()
+
+  const disconnect = async () => {
+      try {
+        deactivate()
+      localStorage.removeItem("account");
+      } catch (ex) {
+        console.log(ex)
+      }
+  }
+
   return (
     <DropDown
     buttonText={text}
@@ -47,6 +60,7 @@ const WalletDropdown: React.FC<WalletDropdownType> = (props) => {
               className={`${
                 active ? 'bg-slate-200' : ''
               } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+              onClick={disconnect}
             >
               Disconnect
               <FontAwesomeIcon className="ml-24 h-5 w-5" icon={faRightFromBracket} />
